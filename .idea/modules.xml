@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Dictionary.iml" filepath="$PROJECT_DIR$/Dictionary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_mvp.iml" filepath="$PROJECT_DIR$/android_mvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/data-test/data-test.iml" filepath="$PROJECT_DIR$/data-test/data-test.iml" />
     </modules>
   </component>
 </project>
