@@ -69,6 +69,9 @@
     <orderEntry type="library" exported="" scope="TEST" name="wagon-http-shared-1.0-beta-6" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="wagon-http-lightweight-1.0-beta-6" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="maven-ant-tasks-2.1.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="E__AndroidProjects_android_mvp_data_build_intermediates_classes_debug" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="E__AndroidProjects_android_mvp_data_build_intermediates_dependency_cache_debug" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="android" level="project" />
   </component>
 </module>
 

@@ -5,7 +5,19 @@ package com.kata.antonio.dictionary.data;
  */
 public class DictionaryDataRepository {
 
-    public String hello(){
-        return "hello!";
+    private CloudDictionaryDataSource cloudDataSource;
+    private MemoryDictionaryDataSource memoryDataSource;
+
+    public DictionaryDataRepository(DictionaryDataFactory dataFactory){
+        this.cloudDataSource = dataFactory.createCloudDataProvider();
+        this.memoryDataSource = dataFactory.createMemoryDataProvider();
+    }
+
+    public String searchDefinitionForWord(String word){
+        return cloudDataSource.searchDefinitionInRAEOfWord(word);
+    }
+
+    public void addNewWordWithDefinition(String word, String definition){
+        this.memoryDataSource.addWordWithDefinitionToRAEDictionary(word, definition);
     }
 }
