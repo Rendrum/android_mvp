@@ -14,31 +14,41 @@ public class DictionaryDataRepositoryTest {
     private DictionaryDataFactory mockDictionaryFactory;
 
     @Mock
-    private CloudDictionaryDataSource mockCloudDictionaryDataSource;
+    private CloudDictionary mockCloudDictionary;
 
     @Mock
-    private MemoryDictionaryDataSource mockMemoryDictionaryDataSource;
+    private MemoryDictionary mockMemoryDictionary;
 
     private DictionaryDataRepository repository;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        given(mockDictionaryFactory.createCloudDataProvider()).willReturn(mockCloudDictionaryDataSource);
-        given(mockDictionaryFactory.createMemoryDataProvider()).willReturn(mockMemoryDictionaryDataSource);
+        given(mockDictionaryFactory.createCloudDataProvider()).willReturn(mockCloudDictionary);
+        given(mockDictionaryFactory.createMemoryDataProvider()).willReturn(mockMemoryDictionary);
         repository = new DictionaryDataRepository(mockDictionaryFactory);
     }
 
     @Test
     public void testFindWord(){
+        when(mockCloudDictionary.searchDefinitionInRAEOfWord(anyString())).
+                thenReturn(WordEntityFactory.createDefaultNotEmptyWord());
         repository.searchDefinitionForWord(anyString());
-        verify(mockCloudDictionaryDataSource).searchDefinitionInRAEOfWord(anyString());
+        verify(mockCloudDictionary).searchDefinitionInRAEOfWord(anyString());
     }
 
     @Test
     public void testAddNewWord(){
-        repository.addNewWordWithDefinition(anyString(), anyString());
-        verify(mockMemoryDictionaryDataSource).addWordWithDefinitionToRAEDictionary(anyString(), anyString());
+        repository.addNewWordWithDefinition(any(WordEntity.class));
+        verify(mockMemoryDictionary).addWordWithDefinitionToRAEDictionary(any(WordEntity.class));
+    }
+
+    @Test
+    public void testFindWordWhenInternetIsOfflineOrNotFoundInCloud(){
+        when(mockCloudDictionary.searchDefinitionInRAEOfWord(anyString())).
+                thenReturn(WordEntityFactory.createEmptyWord());
+        repository.searchDefinitionForWord(anyString());
+        verify(mockMemoryDictionary).searchDefinitionInRAEOfWord(anyString());
     }
 
 }

@@ -5,11 +5,11 @@ package com.kata.antonio.dictionary.data;
  */
 public class DictionaryDataFactory {
 
-    public CloudDictionaryDataSource createCloudDataProvider(){
-        return new CloudDictionaryDataSource();
+    public CloudDictionary createCloudDataProvider(){
+        return new CloudDictionary();
     }
 
-    public MemoryDictionaryDataSource createMemoryDataProvider(){
-        return new MemoryDictionaryDataSource();
+    public MemoryDictionary createMemoryDataProvider(){
+        return new MemoryDictionary();
     }
 }

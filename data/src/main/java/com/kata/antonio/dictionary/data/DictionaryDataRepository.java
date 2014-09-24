@@ -5,19 +5,23 @@ package com.kata.antonio.dictionary.data;
  */
 public class DictionaryDataRepository {
 
-    private CloudDictionaryDataSource cloudDataSource;
-    private MemoryDictionaryDataSource memoryDataSource;
+    private CloudDictionary cloudDataSource;
+    private MemoryDictionary memoryDataSource;
 
     public DictionaryDataRepository(DictionaryDataFactory dataFactory){
         this.cloudDataSource = dataFactory.createCloudDataProvider();
         this.memoryDataSource = dataFactory.createMemoryDataProvider();
     }
 
-    public String searchDefinitionForWord(String word){
-        return cloudDataSource.searchDefinitionInRAEOfWord(word);
+    public WordEntity searchDefinitionForWord(String word){
+        WordEntity wordEntity = cloudDataSource.searchDefinitionInRAEOfWord(word);
+        if (wordEntity.isEmpty()){
+            wordEntity = memoryDataSource.searchDefinitionInRAEOfWord(word);
+        }
+        return wordEntity;
     }
 
-    public void addNewWordWithDefinition(String word, String definition){
-        this.memoryDataSource.addWordWithDefinitionToRAEDictionary(word, definition);
+    public void addNewWordWithDefinition(WordEntity wordEntity){
+        this.memoryDataSource.addWordWithDefinitionToRAEDictionary(wordEntity);
     }
 }
