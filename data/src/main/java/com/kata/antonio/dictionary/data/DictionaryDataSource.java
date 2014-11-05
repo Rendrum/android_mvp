@@ -5,7 +5,12 @@ package com.kata.antonio.dictionary.data;
  */
 public interface DictionaryDataSource {
 
-    void addWordWithDefinitionToRAEDictionary(WordEntity wordEntity);
+    interface DictionaryCallback {
 
-    WordEntity searchDefinitionInRAEOfWord(String word);
+        void onWordLoaded(WordEntity wordEntity);
+
+        void onError(Exception exception);
+    }
+
+    void searchDefinitionOfWord(String word, DictionaryCallback dictionaryCallback);
 }

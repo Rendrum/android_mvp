@@ -5,11 +5,15 @@ package com.kata.antonio.dictionary.data;
  */
 public class WordEntity {
 
-    private String word;
+    private String header;
     private String description;
 
+    public WordEntity(){
+
+    }
+
     public WordEntity(String word, String description){
-        this.word = word;
+        this.header = word;
         this.description = description;
     }
 
@@ -21,15 +25,15 @@ public class WordEntity {
         this.description = description;
     }
 
-    public String getWord() {
-        return word;
+    public String getHeader() {
+        return header;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public boolean isEmpty(){
-        return word == "" && description == "";
+        return header == "" && description == "";
     }
 }
