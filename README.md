@@ -7,7 +7,7 @@ You are free to use the IDE you want, but I recommend AndroidStudio because is G
 
 Data Layer
 ----------
-Only Java based, the data layer is the bottom this of our project.
+Android & Java based, the data layer is the bottom this of our project.
 In order to test the connections the data layer unit tests use [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) a fake web server to avoid hitting the real server.
 I like this framework because decouples the API component from others, so we have an scalable and more testeable code.
 In this layer the project uses Mockito and JUnit.

@@ -8,9 +8,7 @@ public class WordEntity {
     private String header;
     private String description;
 
-    public WordEntity(){
-
-    }
+    public WordEntity(){ }
 
     public WordEntity(String word, String description){
         this.header = word;
@@ -21,19 +19,7 @@ public class WordEntity {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getHeader() {
         return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public boolean isEmpty(){
-        return header == "" && description == "";
     }
 }
