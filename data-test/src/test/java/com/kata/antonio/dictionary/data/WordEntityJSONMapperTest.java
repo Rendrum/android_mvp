@@ -65,6 +65,6 @@ public class WordEntityJSONMapperTest {
                 "    \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\"\n" +
                 "  }\n" +
                 "]";
-        WordEntity wordEntity = this.wordJSONMapper.mapIntoWord(jsonResponse);
+        this.wordJSONMapper.mapIntoWord(jsonResponse);
     }
 }

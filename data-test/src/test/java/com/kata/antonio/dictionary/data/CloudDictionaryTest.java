@@ -90,4 +90,22 @@ public class CloudDictionaryTest {
         server.shutdown();
     }
 
+    // TODO the request url to get the json is: http://api.wordnik.com:80/v4/word.json/test/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=44b1d84173183206647ba25de7d0d8e9dacec7c04bc9f7660
+    //    [
+    //    {
+    //        "textProns": [],
+    //        "sourceDictionary": "ahd-legacy",
+    //            "exampleUses": [],
+    //        "relatedWords": [],
+    //        "labels": [],
+    //        "citations": [],
+    //        "word": "test",
+    //            "text": "A procedure for critical evaluation; a means of determining the presence, quality, or truth of something; a trial:  a test of one's eyesight; subjecting a hypothesis to a test; a test of an athlete's endurance. ",
+    //            "sequence": "0",
+    //            "score": 0,
+    //            "partOfSpeech": "noun",
+    //            "attributionText": "from The American Heritage® Dictionary of the English Language, 4th Edition"
+    //    }
+    //    ]
+
 }
