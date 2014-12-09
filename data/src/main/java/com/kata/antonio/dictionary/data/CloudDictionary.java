@@ -18,53 +18,25 @@ import java.net.URL;
  */
 public class CloudDictionary implements DictionaryDataSource{
 
-    private String url;
+    private WordJSONMapper wordJSONMapper;
+    private WordNickAPI wordNickAPI;
+
+    public CloudDictionary(WordJSONMapper wordJSONMapper, WordNickAPI wordNickAPI) {
+        this.wordJSONMapper = wordJSONMapper;
+        this.wordNickAPI = wordNickAPI;
+    }
 
     @Override
     public void searchDefinitionOfWord(String word, DictionaryCallback dictionaryCallback){
 
-        HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL(this.url);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            String stringResponse = getStringFromInputStream(in);
-            JSONObject jObject = new JSONObject(stringResponse);
-
-            WordEntity wordEntity = new WordEntity(
-                    jObject.getString("header"),
-                    jObject.getString("description"));
+            JSONObject jsonObject = this.wordNickAPI.getWord(word);
+            WordEntity wordEntity = this.wordJSONMapper.mapIntoWord(jsonObject);
             dictionaryCallback.onWordLoaded(wordEntity);
-
-        } catch (IOException e){
-            dictionaryCallback.onError(new NetworkConnectionException(e.getMessage()));
-        } catch (JSONException e){
+        } catch (JSONException e) {
             dictionaryCallback.onError(e);
-        } finally {
-            if (urlConnection != null){
-                urlConnection.disconnect();
-            }
+        } catch (NetworkConnectionException e) {
+            dictionaryCallback.onError(e);
         }
-    }
-
-    private String getStringFromInputStream(InputStream inputStream) {
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder stringBuilderResult = new StringBuilder();
-
-        String line;
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilderResult.append(line);
-            }
-            return stringBuilderResult.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
-    public void setURL(String url) {
-        this.url = url;
     }
 }

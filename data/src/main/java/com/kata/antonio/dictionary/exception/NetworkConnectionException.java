@@ -8,4 +8,6 @@ public class NetworkConnectionException extends Exception {
     public NetworkConnectionException(final String message) {
         super(message);
     }
+
+
 }

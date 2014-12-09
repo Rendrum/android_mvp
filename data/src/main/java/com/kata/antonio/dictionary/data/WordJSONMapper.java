@@ -9,12 +9,10 @@ import org.json.JSONObject;
  */
 public class WordJSONMapper {
 
-    public WordEntity mapIntoWord(String jsonData) throws JSONException {
+    public WordEntity mapIntoWord(JSONObject jsonObject) throws JSONException {
         WordEntity wordEntity;
         try {
-            JSONArray wordJSONArray = new JSONArray(jsonData);
-            JSONObject wordJSON = wordJSONArray.getJSONObject(0);
-            wordEntity = new WordEntity(wordJSON.getString("word"), wordJSON.getString("text"));
+            wordEntity = new WordEntity(jsonObject.getString("word"), jsonObject.getString("text"));
         } catch (JSONException e) {
             throw new JSONException("Malformed JSON. Please review the format.");
         }

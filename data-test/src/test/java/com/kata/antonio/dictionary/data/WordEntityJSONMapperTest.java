@@ -1,6 +1,7 @@
 package com.kata.antonio.dictionary.data;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class WordEntityJSONMapperTest {
 
     @Test
     public void testMapWordEntityOk() throws JSONException {
-        String jsonResponse = "[\n" +
+        String jsonResponse =
                 "  {\n" +
                 "    \"textProns\": [],\n" +
                 "    \"sourceDictionary\": \"ahd-legacy\",\n" +
@@ -41,9 +42,9 @@ public class WordEntityJSONMapperTest {
                 "    \"score\": 0,\n" +
                 "    \"partOfSpeech\": \"noun\",\n" +
                 "    \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\"\n" +
-                "  }\n" +
-                "]";
-        WordEntity wordEntity = this.wordJSONMapper.mapIntoWord(jsonResponse);
+                "  }";
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        WordEntity wordEntity = this.wordJSONMapper.mapIntoWord(jsonObject);
 
         assertThat(wordEntity.getDescription(), is(equalTo("A procedure for critical evaluation.")));
         assertThat(wordEntity.getHeader(), is(equalTo("test")));
@@ -51,7 +52,7 @@ public class WordEntityJSONMapperTest {
 
     @Test(expected=JSONException.class)
     public void testMapWordEntityFails() throws JSONException {
-        String jsonResponse = "[\n" +
+        String jsonResponse =
                 "  {\n" +
                 "    \"textProns\": [],\n" +
                 "    \"sourceDictionary\": \"ahd-legacy\",\n" +
@@ -63,8 +64,8 @@ public class WordEntityJSONMapperTest {
                 "    \"score\": 0,\n" +
                 "    \"partOfSpeech\": \"noun\",\n" +
                 "    \"attributionText\": \"from The American Heritage® Dictionary of the English Language, 4th Edition\"\n" +
-                "  }\n" +
-                "]";
-        this.wordJSONMapper.mapIntoWord(jsonResponse);
+                "  }";
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        this.wordJSONMapper.mapIntoWord(jsonObject);
     }
 }
